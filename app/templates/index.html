@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}	
+
+	<h1>Hi, {{ current_user.username }}!</h1>
+
+        <h1> Hi this is my flask App created for my sosio task </h1>
+   
+
+  
+   <div> 
+   	<h4> To Navigate to  Reddit Please <a  href=" {{url_for('reddit')}} "> Click Here</a> </h4>
+     <h4> To tweet this Content in your Twitter Account Please <a class="twitter-share-button" href="https://twitter.com/intent/tweet"> Click Here</a> </h4>
+   </div>
+     
+{% endblock %}
+
+

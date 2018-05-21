@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Reddit</h1>
+    <form action=" {{url_for('reddit')}} " method="post">
+        {{ form.hidden_tag() }}
+        <!--<p>
+            {{ form.sub.label }}<br>
+            {{ form.sub(size=32) }}<br>
+            {% for error in form.sub.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>-->
+        <input type="text" name="sub" placeholder="Topic of Intrest">
+       
+        <p>{{ form.submit() }} </p>
+    </form>
+    
+{% endblock %}
+
+
