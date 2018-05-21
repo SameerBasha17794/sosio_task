@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db
+from werkzeug.urls import url_parse
 from app.forms import LoginForm, RegistrationForm,RedditForm
 from app.models import User
 import praw
@@ -59,20 +60,14 @@ def register():
 def reddit():
 	if current_user.is_authenticated:
 		form = RedditForm()
-		print("IS")
+		#print("IS")
 		if form.validate_on_submit():
-			print("IN")
+			#print("IN")
 			sub= request.form['sub']
-			return redirect (url_for('redditdata'))
+			reddit=praw.Reddit(client_id = 'f3G0avzj-27sXA', client_secret= 'iYK7z9qylnyGKUgx0eAviIRBOCI', username = 'sosio_app', password = 'Sosio@123', user_agent ='sosio_app')
+			subreddit=reddit.subreddit(sub)
+			popular=subreddit.hot()
+			return render_template('redditdata.html',title='Reddit Data',popular=popular)	      
+	
+			
 		return render_template('reddit.html',title="Reddit",form=form)		
-		
-
-@app.route('/redditdata',methods=['GET','POST'])
-def redditdata():
-	form=RedditForm()
-	
-	reddit=praw.Reddit(client_id = 'f3G0avzj-27sXA', client_secret= 'iYK7z9qylnyGKUgx0eAviIRBOCI', username = 'sosio_app', password = 'Sosio@123', user_agent ='sosio_app')
-	subreddit=reddit.subreddit("reddit.sub")
-	popular=subreddit.hot()
-	return render_template('redditdata.html',title='Reddit Data',popular=popular)	      
-	
