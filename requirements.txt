@@ -37,5 +37,5 @@ update-checker==0.16
 urllib3==1.22
 URLObject==2.4.3
 virtualenv==15.2.0
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 WTForms==2.1
